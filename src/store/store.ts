@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-  key: 'green-api',
+  key: 'contacts-app',
   version: 1,
   storage
 };
