@@ -1,5 +1,6 @@
 import { LoginFormValues, LoginFormErrors } from '@/types';
 import { VStack, Center, Container, Box, Heading, FormControl, FormLabel, Button, Input, FormErrorMessage } from '@chakra-ui/react';
+import { ERROR_EMPTY_FIELD } from '@/config/constants';
 
 type Props = {
   values: LoginFormValues
@@ -10,7 +11,7 @@ type Props = {
 }
 
 export const LoginForm = ({ values, onChange, onSubmit, submitting, errors }: Props) => {
-  const { email, password } = values;
+  const { email, password } = values || {};
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit();
@@ -25,15 +26,15 @@ export const LoginForm = ({ values, onChange, onSubmit, submitting, errors }: Pr
         </Box>
         <Box my={4} textAlign="left">
           <form onSubmit={handleSubmit}>
-            <FormControl isInvalid={errors.email}>
+            <FormControl isInvalid={errors?.email}>
               <FormLabel>Email</FormLabel>
               <Input name="email" type="email" placeholder="Email" value={email} onChange={onChange} />
-              <FormErrorMessage>Поле не может быть пустым.</FormErrorMessage>
+              <FormErrorMessage>{ERROR_EMPTY_FIELD}</FormErrorMessage>
             </FormControl>
-            <FormControl mt={6} isInvalid={errors.password}>
+            <FormControl mt={6} isInvalid={errors?.password}>
               <FormLabel>Пароль</FormLabel>
               <Input name="password" type="password" placeholder="*******" value={password} onChange={onChange} />
-              <FormErrorMessage>Поле не может быть пустым.</FormErrorMessage>
+              <FormErrorMessage>{ERROR_EMPTY_FIELD}</FormErrorMessage>
             </FormControl>
             <Button width="full" mt={4} type="submit" colorScheme="blue" isDisabled={submitting} isLoading={submitting}>
               Отправить
