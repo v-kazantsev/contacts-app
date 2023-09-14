@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import { LoginForm } from '@/components/login-form';
-import { LoginFormValues } from '@/types';
+import { LoginFormValues, LoginFormErrors } from '@/types';
 
 const formValues = {
   email: "",
   password: ""
 }
 
+const formErrors = {
+  email: false,
+  password: false
+}
+
 export const LoginView = () => {
   const [values, setValues] = useState<LoginFormValues>(formValues);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const [errors, setErrors] = useState<LoginFormErrors>(formErrors);
+  const handleInputChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    const { name, value } = e.target as HTMLInputElement;
     setValues({
       ...values,
       [name]: value,
@@ -24,7 +29,7 @@ export const LoginView = () => {
         if (email !== "" && password !== "") {
           resolve();
         } else {
-          reject("Поле не может быть пустым");
+          reject({ email: email === "", password: password === ""});
         }
       }, 2000);
     });
@@ -33,16 +38,17 @@ export const LoginView = () => {
     setSubmitting(true);
     try {
       await fakeLogin(values);
-    } catch (error) {
-      setError(error as string)
-    } finally {
-      setSubmitting(false);
       setValues({
         email: "",
         password: ""
       });
+      setErrors(formErrors);
+    } catch (errors) {
+      setErrors(errors as LoginFormErrors)
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  return <LoginForm values={values} onChange={handleInputChange} error={error} onSubmit={handleSubmit} submitting={submitting} />
+  return <LoginForm values={values} onChange={handleInputChange} errors={errors} onSubmit={handleSubmit} submitting={submitting} />
 };

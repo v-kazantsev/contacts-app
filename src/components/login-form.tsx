@@ -1,4 +1,4 @@
-import { LoginFormValues } from '@/types';
+import { LoginFormValues, LoginFormErrors } from '@/types';
 import { VStack, Center, Container, Box, Heading, FormControl, FormLabel, Button, Input, FormErrorMessage } from '@chakra-ui/react';
 
 type Props = {
@@ -6,12 +6,12 @@ type Props = {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onSubmit: VoidFunction;
   submitting: boolean;
-  error: string;
+  errors: LoginFormErrors;
 }
 
-export const LoginForm = ({ values, onChange, onSubmit, submitting, error }: Props) => {
+export const LoginForm = ({ values, onChange, onSubmit, submitting, errors }: Props) => {
   const { email, password } = values;
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit();
   }
@@ -25,12 +25,12 @@ export const LoginForm = ({ values, onChange, onSubmit, submitting, error }: Pro
         </Box>
         <Box my={4} textAlign="left">
           <form onSubmit={handleSubmit}>
-            <FormControl isInvalid={error === "email"}>
+            <FormControl isInvalid={errors.email}>
               <FormLabel>Email</FormLabel>
               <Input name="email" type="email" placeholder="Email" value={email} onChange={onChange} />
               <FormErrorMessage>Поле не может быть пустым.</FormErrorMessage>
             </FormControl>
-            <FormControl mt={6} isInvalid={error === "password"}>
+            <FormControl mt={6} isInvalid={errors.password}>
               <FormLabel>Пароль</FormLabel>
               <Input name="password" type="password" placeholder="*******" value={password} onChange={onChange} />
               <FormErrorMessage>Поле не может быть пустым.</FormErrorMessage>
