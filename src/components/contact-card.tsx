@@ -4,15 +4,27 @@ import { Card, CardHeader, CardBody, CardFooter, Heading, Text, HStack, IconButt
 import { Modal } from '@/components/modal';
 import { ContactForm } from '@/components/contact-form';
 import { useFormInput } from '@/hooks/use-form-input';
+import { useAppDispatch } from '@/hooks/use-app-dispatch';
+import { editContact } from '@/features/contacts/actions';
 
 type Props = {
   contact: Contact;
 };
 
 export const ContactCard = ({ contact }: Props) => {
+  const dispatch = useAppDispatch();
   const { name, phone, email } = contact;
   const { onOpen, isOpen, onClose } = useDisclosure();
-  const { values, onChange } = useFormInput<ContactFormValues>({ name, phone, email })
+  const { values, onChange } = useFormInput<ContactFormValues>({ name, phone, email });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      dispatch(editContact({...values, id: contact.id}));
+      onClose();
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
   <>
     <Card size='sm'>
@@ -31,7 +43,7 @@ export const ContactCard = ({ contact }: Props) => {
       </CardFooter>
     </Card>
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ContactForm onClose={onClose} values={values} onChange={onChange} />
+      <ContactForm onClose={onClose} values={values} onChange={onChange} onSubmit={handleSubmit} />
     </Modal>
   </>
 )};

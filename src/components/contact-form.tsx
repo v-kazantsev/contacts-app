@@ -6,14 +6,15 @@ type Props = {
   onClose: VoidFunction;
   values: ContactFormValues;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export const ContactForm = ({ onClose, values, onChange }: Props) => {
+export const ContactForm = ({ onClose, values, onChange, onSubmit }: Props) => {
   const { name, email, phone } = values || {};
   return (
     <Card mt="6px">
       <CardBody>
-        <form>
+        <form onSubmit={onSubmit}>
           <VStack spacing="12px">
           <TextField name="name" label="Имя" value={name} onChange={onChange} />
           <TextField name="email" label="Email" value={email} onChange={onChange}/>
