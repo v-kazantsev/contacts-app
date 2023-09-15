@@ -10,8 +10,10 @@ import {
   REGISTER
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { contactsReducer } from '@/features/contacts/slice';
 
 const rootReducer = combineReducers({
+  contacts: contactsReducer
 });
 
 const persistConfig = {

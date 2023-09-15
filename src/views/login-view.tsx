@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LoginForm } from '@/components/login-form';
 import { LoginFormValues, LoginFormErrors } from '@/types';
 
@@ -13,6 +14,7 @@ const formErrors = {
 }
 
 export const LoginView = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState<LoginFormValues>(formValues);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<LoginFormErrors>(formErrors);
@@ -43,6 +45,7 @@ export const LoginView = () => {
         password: ""
       });
       setErrors(formErrors);
+      navigate("contacts");
     } catch (errors) {
       setErrors(errors as LoginFormErrors)
     } finally {
