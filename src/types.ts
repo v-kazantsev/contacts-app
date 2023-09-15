@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse } from 'axios';
 
 export type LoginFormValues = {
   email: string;
@@ -25,3 +25,5 @@ export type ResponseAPI<Data> = {
 export type ContactsApi = {
   getContacts(): Promise<AxiosResponse<ResponseAPI<Array<Contact>>>>;
 }
+
+export type ContactFormValues = Omit<Contact, 'id'>;
