@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react';
-// import { colors, typography } from '@/styles/custom-theme/index';
+import { typography } from '@/styles/custom-theme/typography';
 
 export const theme = extendTheme({
   // colors,
-  // textStyles: typography,
+  textStyles: typography,
 });

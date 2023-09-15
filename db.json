@@ -1,4 +1,12 @@
 {
+  "contacts": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "phone": "890911111111",
+      "email": "test@test.com"
+    }
+  ],
   "posts": [
     { "id": 1, "title": "json-server", "author": "typicode" }
   ],
