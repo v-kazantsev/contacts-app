@@ -6,7 +6,9 @@ import {
   UnorderedList,
   Heading,
   useDisclosure,
-  Button
+  Button,
+  HStack,
+  Input
 } from '@chakra-ui/react';
 import { Modal } from '@/components/modal';
 import { ContactForm } from '@/components/contact-form';
@@ -17,10 +19,12 @@ import { deleteContact } from '@/features/contacts/actions';
 
 
 type Props = {
-  contacts: Array<Contact>
+  contacts: Array<Contact>;
+  value: string;
+  onChange: (e: React.SyntheticEvent<HTMLInputElement>) => void;
 }
 
-export const Contacts = ({ contacts }: Props) => {
+export const Contacts = ({ contacts, value, onChange }: Props) => {
   const dispatch = useAppDispatch();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const onDelete = (id: string) => dispatch(deleteContact(id));
@@ -33,6 +37,9 @@ export const Contacts = ({ contacts }: Props) => {
   <Center>
     <Container maxW="40%">
       <Heading mb="40px">Список контактов</Heading>
+      <HStack spacing={0}>
+        <Input value={value} onChange={onChange} />
+      </HStack>
       <UnorderedList styleType="none">
         {(contacts || []).map((contact) => (
           <ListItem key={contact.id} mb="12px">
