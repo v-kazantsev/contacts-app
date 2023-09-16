@@ -26,6 +26,7 @@ export type ContactsApi = {
   getContacts(): Promise<AxiosResponse<ResponseAPI<Array<Contact>>>>;
   editContact(contact: Contact): Promise<AxiosResponse<ResponseAPI<Contact>>>;
   addContact(contact: Contact): Promise<AxiosResponse<ResponseAPI<Contact>>>;
+  deleteContact(id: string): Promise<AxiosResponse<ResponseAPI<object>>>;
 }
 
 export type ContactFormValues = {

@@ -3,14 +3,14 @@
     {
       "id": "1",
       "name": "John Doe",
-      "phone": "890911111112",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "phone": "12345"
     },
     {
       "name": "Mad Hatter",
-      "email": "test2@test.com",
-      "phone": "12345",
-      "id": "60dadf00-5469-11ee-afa2-cd3eab2af8cf"
+      "email": "bb1667@ya.ru",
+      "phone": "1234",
+      "id": "e50e5230-5472-11ee-905a-41334f6779c2"
     }
   ],
   "posts": [

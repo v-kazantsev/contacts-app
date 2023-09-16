@@ -5,8 +5,9 @@ export const typography = {
     fontWeight: 400,
   },
   p2: {
-    fontSize: ['14px'],
-    lineHeight: '20px',
-    fontWeight: 700,
+    fontSize: ['12px'],
+    lineHeight: '16px',
+    fontWeight: 400,
+    color: 'red',
   }
 };
