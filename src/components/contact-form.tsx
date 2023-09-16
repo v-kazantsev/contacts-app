@@ -1,15 +1,28 @@
 import { Button, Card, CardBody, Flex, VStack } from '@chakra-ui/react';
+import { v1 as uuid } from 'uuid';
 import { TextField } from '@/ui-elements/text-field';
-import { ContactFormValues } from '@/types';
+import { Contact, ContactFormValues } from '@/types';
+import { useFormInput } from '@/hooks/use-form-input';
+import { useAppDispatch } from '@/hooks/use-app-dispatch';
+import { addContact, editContact } from '@/features/contacts/actions';
 
 type Props = {
   onClose: VoidFunction;
-  values: ContactFormValues;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  initialValues: ContactFormValues;
 }
 
-export const ContactForm = ({ onClose, values, onChange, onSubmit }: Props) => {
+export const ContactForm = ({ onClose, initialValues }: Props) => {
+  const dispatch = useAppDispatch();
+  const { values, onChange } = useFormInput<ContactFormValues>(initialValues);
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      values.id ? dispatch(editContact(values as Contact)) : dispatch(addContact({...values, id: uuid()}));
+      onClose();
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const { name, email, phone } = values || {};
   return (
     <Card mt="6px">

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ContactsState } from '@/features/contacts/types';
-import { getContacts, editContact } from '@/features/contacts/actions';
+import { getContacts, editContact, addContact } from '@/features/contacts/actions';
 import { Contact } from '@/types';
 
 const initialState: ContactsState = {
@@ -45,6 +45,21 @@ const slice = createSlice({
       return state;
     },
     [editContact.rejected.type]: (state: ContactsState, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      return state;
+    },
+    [addContact.pending.type]: (state: ContactsState) => {
+      state.isLoading = true;
+      state.error = undefined;
+      return state;
+    },
+    [addContact.fulfilled.type]: (state: ContactsState, action: PayloadAction<Contact>) => {
+      state.isLoading = false;
+      state.list.push(action.payload);
+      return state;
+    },
+    [addContact.rejected.type]: (state: ContactsState, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
       return state;
