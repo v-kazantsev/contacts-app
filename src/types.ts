@@ -18,7 +18,6 @@ export type Contact = {
 }
 
 export type ResponseAPI<Data> = {
-  success: true;
   data: Data;
 }
 
@@ -27,6 +26,10 @@ export type ContactsApi = {
   editContact(contact: Contact): Promise<AxiosResponse<ResponseAPI<Contact>>>;
   addContact(contact: Contact): Promise<AxiosResponse<ResponseAPI<Contact>>>;
   deleteContact(id: string): Promise<AxiosResponse<ResponseAPI<object>>>;
+}
+
+export type AuthApi = {
+  login(): Promise<AxiosResponse<ResponseAPI<{ token: string }>>>;
 }
 
 export type ContactFormValues = {

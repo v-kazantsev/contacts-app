@@ -13,6 +13,9 @@
       "id": "e50e5230-5472-11ee-905a-41334f6779c2"
     }
   ],
+  "login": {
+    "token": "verysecrettoken"
+  },
   "posts": [
     {
       "id": 1,

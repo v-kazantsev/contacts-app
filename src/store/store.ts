@@ -11,9 +11,11 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { contactsReducer } from '@/features/contacts/slice';
+import { authReducer } from '@/features/auth/slice';
 
 const rootReducer = combineReducers({
-  contacts: contactsReducer
+  contacts: contactsReducer,
+  auth: authReducer
 });
 
 const persistConfig = {

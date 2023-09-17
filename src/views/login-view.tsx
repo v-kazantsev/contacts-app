@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginForm } from '@/components/login-form';
 import { LoginFormValues, LoginFormErrors } from '@/types';
+import { useAppDispatch } from '@/hooks/use-app-dispatch';
+import { login } from '@/features/auth/actions/login';
 
 const formValues = {
   email: "",
@@ -15,6 +17,7 @@ const formErrors = {
 
 export const LoginView = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [values, setValues] = useState<LoginFormValues>(formValues);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<LoginFormErrors>(formErrors);
@@ -29,6 +32,7 @@ export const LoginView = () => {
     return new Promise<void>((resolve, reject) => {
       setTimeout(() => {
         if (email !== "" && password !== "") {
+          dispatch(login());
           resolve();
         } else {
           reject({ email: email === "", password: password === ""});
@@ -45,7 +49,7 @@ export const LoginView = () => {
         password: ""
       });
       setErrors(formErrors);
-      navigate("contacts");
+      navigate("/contacts");
     } catch (errors) {
       setErrors(errors as LoginFormErrors)
     } finally {

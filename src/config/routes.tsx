@@ -1,9 +1,12 @@
-import { LoginPage } from '@/pages/login-page';
-import { ContactsPage } from '@/pages/contacts-page';
+import { LoginPage, ContactsPage, MainPage } from '@/pages';
 
 export const routes = [
   {
     path: "/",
+    element: <MainPage />,
+  },
+  {
+    path: "/login",
     element: <LoginPage />,
   },
   {
