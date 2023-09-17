@@ -17,7 +17,7 @@ export const LoginForm = ({ values, onChange, onSubmit, submitting, errors }: Pr
     onSubmit();
   }
   return (
-<VStack>
+  <VStack>
     <Center height="100vh">
       <Container maxW="500px" my="auto">
       <Box p={8} borderWidth={1} borderRadius={8} boxShadow="lg">

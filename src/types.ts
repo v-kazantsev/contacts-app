@@ -35,3 +35,8 @@ export type ContactFormValues = {
   phone: string;
   email: string;
 };
+
+export type InputProps = {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

@@ -10,8 +10,8 @@ type Props = {
   type?: string;
 } & FormControlProps;
 
-export const TextField = ({ label, error, helperMessage, value, onChange, name, type = 'text' }: Props) => (
-  <FormControl>
+export const TextField = ({ label, error, helperMessage, value, onChange, name, type = 'text', ...formControlProps }: Props) => (
+  <FormControl { ...formControlProps }>
     <FormLabel>{label}</FormLabel>
     <Input type={type} name={name} value={value} onChange={onChange} />
     {error ? <FormErrorMessage>{error}</FormErrorMessage> : <FormHelperText>{helperMessage}</FormHelperText>}
