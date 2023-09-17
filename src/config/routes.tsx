@@ -1,4 +1,5 @@
-import { LoginPage, ContactsPage, MainPage } from '@/pages';
+import { LoginPage, ContactsPage, MainPage, NotFoundPage } from '@/pages';
+import { PrivateRoute } from '@/components/private-route';
 
 export const routes = [
   {
@@ -11,6 +12,10 @@ export const routes = [
   },
   {
     path: "/contacts",
-    element: <ContactsPage />
+    element: <PrivateRoute><ContactsPage /></PrivateRoute>
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />
   }
 ];

@@ -37,7 +37,7 @@ export const LoginView = () => {
         } else {
           reject({ email: email === "", password: password === ""});
         }
-      }, 2000);
+      }, 1200);
     });
   };
   const handleSubmit = async () => {
