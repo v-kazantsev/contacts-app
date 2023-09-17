@@ -2,15 +2,21 @@
   "contacts": [
     {
       "id": "1",
-      "name": "John Doe",
+      "name": "Test User",
       "email": "test@test.com",
-      "phone": "12345"
+      "phone": "890912345"
     },
     {
-      "name": "Mad Hatter",
-      "email": "bb1667@ya.ru",
-      "phone": "1234",
-      "id": "e50e5230-5472-11ee-905a-41334f6779c2"
+      "name": "Test User 2",
+      "email": "test2@test.com",
+      "phone": "890922222",
+      "id": "2"
+    },
+    {
+      "name": "Test User 3",
+      "email": "test3@test.com",
+      "phone": "890933333",
+      "id": "3"
     }
   ],
   "login": {

@@ -11,11 +11,10 @@ export const ContactsView = () => {
   const [filter, setFilter] = useState("");
   const debouncedFilter = useDebounce(filter);
   const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => setFilter((e.target as HTMLInputElement).value);
-  const contacts = useAppSelector(contactsSelector);
-  const { list, isLoading } = contacts || {};
+  const { list, isLoading } = useAppSelector(contactsSelector);
   const filterContacts = (list: Array<Contact>) => {
     const filteredNames = (list || []).filter(({ name }) => name?.toLowerCase().includes(filter.toLowerCase()));
-    const filteredEmails = (list || []).filter(({ email }) => email?.toLowerCase().includes(filter));
+    const filteredEmails = (list || []).filter(({ email }) => email?.toLowerCase().includes(filter.toLowerCase()));
     const filteredPhones = (list || []).filter(({ phone }) => phone?.includes(filter));
     return uniq([...filteredNames, ...filteredEmails, ...filteredPhones]);
   };
